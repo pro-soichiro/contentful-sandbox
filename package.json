@@ -1,0 +1,21 @@
+{
+  "name": "contentful-sandbox",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@contentful/rich-text-html-renderer": "^16.1.2",
+    "contentful": "8.1",
+    "contentful-management": "^10.45.1",
+    "core-js": "^3.25.3",
+    "nuxt": "^2.15.8",
+    "vue": "^2.7.10",
+    "vue-server-renderer": "^2.7.10",
+    "vue-template-compiler": "^2.7.10"
+  }
+}
