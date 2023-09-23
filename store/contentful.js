@@ -1,7 +1,8 @@
 import { createClient } from "~/plugins/contentful.js";
-import { createManagementClient } from "~/plugins/contentful-management.js";
 const client = createClient();
-const managementClient = createManagementClient();
+
+// import { createManagementClient } from "~/plugins/contentful-management.js";
+// const managementClient = createManagementClient();
 
 
 export const state = () => ({
@@ -90,24 +91,24 @@ export const actions = {
     if (response.items.length > 0) {
       const entryId = response.items[0].sys.id
 
-      managementClient
-        .getSpace("ceccmyla1s68")
-        .then((space) => space.getEnvironment("master"))
-        .then((environment) => environment.getEntry(entryId))
-        .then((entry) => {
-          entry.fields.name["en-US"] = user.name;
-          entry.fields.id["en-US"] = Number(user.id);
-          entry.fields.age["en-US"] = Number(user.age);
-          return entry.update();
-        })
-        .then((entry) => {
-          commit("SET_USER", {
-            id: entry.fields.id["en-US"],
-            age: entry.fields.age["en-US"],
-            name: entry.fields.name["en-US"],
-          });
-        })
-        .catch(console.error);
+      // managementClient
+      //   .getSpace("ceccmyla1s68")
+      //   .then((space) => space.getEnvironment("master"))
+      //   .then((environment) => environment.getEntry(entryId))
+      //   .then((entry) => {
+      //     entry.fields.name["en-US"] = user.name;
+      //     entry.fields.id["en-US"] = Number(user.id);
+      //     entry.fields.age["en-US"] = Number(user.age);
+      //     return entry.update();
+      //   })
+      //   .then((entry) => {
+      //     commit("SET_USER", {
+      //       id: entry.fields.id["en-US"],
+      //       age: entry.fields.age["en-US"],
+      //       name: entry.fields.name["en-US"],
+      //     });
+      //   })
+      //   .catch(console.error);
     }
   },
 };
