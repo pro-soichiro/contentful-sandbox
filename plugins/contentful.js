@@ -1,13 +1,11 @@
 const contentful = require("contentful");
 
-const config = {
-  space: process.env.CTF_SPACE_ID,
-  accessToken: process.env.CTF_CDA_ACCESS_TOKEN,
-  host: "preview.contentful.com",
-};
+export default () => {
+  const config = {
+    space: process.env.CTF_SPACE_ID,
+    accessToken: process.env.CTF_CDA_ACCESS_TOKEN,
+    host: "preview.contentful.com",
+  };
 
-module.exports = {
-  createClient() {
-    return contentful.createClient(config);
-  },
+  return contentful.createClient(config);
 };

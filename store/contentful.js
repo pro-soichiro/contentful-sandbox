@@ -1,4 +1,4 @@
-import { createClient } from "~/plugins/contentful.js";
+import createClient from "~/plugins/contentful.js";
 const client = createClient();
 
 // import { createManagementClient } from "~/plugins/contentful-management.js";

@@ -24,12 +24,20 @@
       </ul>
       <dt>content</dt>
       <dd v-html="toHtmlString(post.content)"></dd>
+      <dt>contentBlocks</dt>
+      <component
+        v-for="(contentBlock, index) in post.contentBlocks"
+        :key="index"
+        :is="capitalizedContentTypeId(contentBlock.sys.contentType.sys.id)"
+        :data="contentBlock.fields"
+      />
     </dl>
   </div>
 </template>
 <script>
 import Breadcrumbs from "~/components/Breadcrumbs.vue";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import { mapState } from "vuex";
 
 export default {
   components: {
@@ -37,9 +45,11 @@ export default {
   },
   async asyncData({ store, params }) {
     await store.dispatch("contentful/fetchPost", params.id);
-    return { post: store.state.contentful.post };
   },
   computed: {
+    ...mapState({
+      post: (state) => state.contentful.post,
+    }),
     breadcrumbs() {
       return [
         { text: "Top", path: "/" },
@@ -55,6 +65,9 @@ export default {
   methods: {
     toHtmlString(obj) {
       return documentToHtmlString(obj);
+    },
+    capitalizedContentTypeId(contentTypeId) {
+      return contentTypeId.charAt(0).toUpperCase() + contentTypeId.slice(1);
     },
   },
 };
