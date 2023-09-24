@@ -1,8 +1,7 @@
 <template>
   <div>
-    <Breadcrumbs :breadcrumbs="breadcrumbs" />
-    <h1>/posts/index.vue</h1>
-    <h2>お役立ち情報一覧</h2>
+    <Breadcrumbs title="お役立ち情報" />
+    <h1>お役立ち情報</h1>
     <ul>
       <li v-for="entry in entries">
         <nuxt-link :to="'/posts/' + entry.fields.slug">
@@ -39,13 +38,13 @@ export default {
     await store.dispatch("contentful/fetchEntries", "posts");
     return { entries: store.state.contentful.entries };
   },
-  computed: {
-    breadcrumbs() {
-      return [
-        { text: "Top", path: "/" },
-        { text: "記事", path: "/posts" },
-      ];
-    },
-  },
+  // computed: {
+  //   breadcrumbs() {
+  //     return [
+  //       { text: "Top", path: "/" },
+  //       { text: "記事", path: "/posts" },
+  //     ];
+  //   },
+  // },
 };
 </script>

@@ -1,11 +1,10 @@
 <template>
   <div>
-    <Breadcrumbs />
-    <h1>/posts/tags/_tagId.vue</h1>
-    <h2>タグの一覧</h2>
+    <Breadcrumbs title="タグの一覧"/>
+    <h1>タグの一覧</h1>
     <ul>
       <li v-for="entry in entries">
-        <nuxt-link :to="'/posts/tags/'+entry.fields.url">
+        <nuxt-link :to="'/posts/tags/'+entry.fields.slug">
           {{ entry.fields.name }}
         </nuxt-link>
       </li>

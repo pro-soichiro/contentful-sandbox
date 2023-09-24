@@ -1,11 +1,10 @@
 <template>
   <div>
-    <Breadcrumbs />
-    <h1>/posts/categories/index.vue</h1>
-    <h2>カテゴリーの一覧</h2>
+    <Breadcrumbs title="カテゴリーの一覧"/>
+    <h1>カテゴリーの一覧</h1>
     <ul>
       <li v-for="entry in entries">
-        <nuxt-link :to="'/posts/categories/' + entry.fields.url">
+        <nuxt-link :to="'/posts/categories/' + entry.fields.slug">
           {{ entry.fields.name }}
         </nuxt-link>
       </li>

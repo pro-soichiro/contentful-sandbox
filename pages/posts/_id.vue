@@ -1,8 +1,6 @@
 <template>
   <div>
-    <Breadcrumbs :breadcrumbs="breadcrumbs" />
-    <h1>/posts/_id.vue</h1>
-    <h2>記事詳細</h2>
+    <Breadcrumbs :breadcrumbs="breadcrumbs" :title="post.title" />
     <dl>
       <dt>slug</dt>
       <dd>{{ post.slug }}</dd>
@@ -60,13 +58,11 @@ export default {
     }),
     breadcrumbs() {
       return [
-        { text: "Top", path: "/" },
-        { text: "記事", path: "/posts" },
+        { text: "お役立ち情報", path: "/posts" },
         {
-          text: this.post.postsCategory.fields.name,
-          path: `/posts/categories/${this.post.postsCategory.fields.url}`,
+          text: this.post.postsCategory.fields.name+'の一覧',
+          path: `/posts/categories/${this.post.postsCategory.fields.slug}`,
         },
-        { text: this.post.title, path: `/posts/${this.post.slug}` },
       ];
     },
   },

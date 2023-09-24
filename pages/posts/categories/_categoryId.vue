@@ -1,8 +1,7 @@
 <template>
   <div>
-    <Breadcrumbs :breadcrumbs="breadcrumbs" />
-    <h1>/posts/categories/_categoryId.vue</h1>
-    <h2>{{ category.fields.name }}の一覧</h2>
+    <Breadcrumbs :breadcrumbs="breadcrumbs" :title="category.fields.name+'の一覧'" />
+    <h1>{{ category.fields.name }}の一覧</h1>
     <ul>
       <li v-for="entry in entries">
         <nuxt-link :to="'/posts/' + entry.fields.slug">
@@ -32,12 +31,7 @@ export default {
   computed: {
     breadcrumbs() {
       return [
-        { text: "Top", path: "/" },
-        { text: "記事", path: "/posts" },
-        {
-          text: this.category.fields.name,
-          path: `/posts/categories/${this.category.fields.url}`,
-        },
+        { text: "お役立ち情報", path: "/posts" },
       ];
     },
   },
