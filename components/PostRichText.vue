@@ -26,14 +26,15 @@ export default {
     renderHyperlink({ data, content }, next) {
       return `<a href="${data.uri}" target="_blank">${next(content)}</a>`;
     },
-    richTextResponse(content) {
+    richTextResponse(richtextObject) {
       const renderOptions = {
         renderNode: {
           [BLOCKS.EMBEDDED_ASSET]: this.renderEmbeddedAsset,
           [INLINES.HYPERLINK]: this.renderHyperlink,
         },
       };
-      return documentToHtmlString(content, renderOptions);
+      console.log(renderOptions.renderNode.hyperlink)
+      return documentToHtmlString(richtextObject, renderOptions);
     },
   },
 };

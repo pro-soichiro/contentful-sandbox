@@ -22,7 +22,7 @@ export default {
   async asyncData({ store, params }) {
     await store.dispatch("contentful/fetchEntries", "posts");
     const filterdEntries = store.state.contentful.entries.filter(
-      (item) => item.fields.postsCategory.fields.url === params.categoryId
+      (item) => item.fields.postsCategory.fields.slug === params.categoryId
     );
     return {
       category: {...filterdEntries[0].fields.postsCategory},

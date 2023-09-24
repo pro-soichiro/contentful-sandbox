@@ -28,7 +28,7 @@ export default {
     await store.dispatch("contentful/fetchEntries", "posts");
     const filterdEntries = store.state.contentful.entries.filter((item) => {
       return item.fields.postsTags.some(
-        (tag) => tag.fields.url === params.tagId
+        (tag) => tag.fields.slug === params.tagId
       );
     });
     await store.dispatch("contentful/fetchTag", params.tagId);
@@ -39,7 +39,7 @@ export default {
       return [
         { text: "Top", path: "/" },
         { text: "記事", path: "/posts" },
-        { text: `「${this.tag.name}」の一覧`, path: `/posts/tags/${this.tag.url}` },
+        { text: `「${this.tag.name}」の一覧`, path: `/posts/tags/${this.tag.slug}` },
       ];
     },
   },

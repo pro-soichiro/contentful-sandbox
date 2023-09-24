@@ -70,11 +70,11 @@ export const actions = {
       console.error(e);
     }
   },
-  async fetchTag({ commit }, url) {
+  async fetchTag({ commit }, slug) {
     try {
       const response = await client.getEntries({
         content_type: "postsTag",
-        "fields.url": url,
+        "fields.slug": slug,
       });
       if (response.items.length > 0) {
         commit("SET_TAG", response.items[0].fields);
