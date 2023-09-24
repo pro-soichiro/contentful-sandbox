@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Breadcrumbs :breadcrumbs="breadcrumbs"/>
+    <Breadcrumbs :breadcrumbs="breadcrumbs" title="編集"/>
     <div v-if="state === 'ready'">
       <div>
         <label for="id">id</label>
@@ -28,9 +28,7 @@
 </template>
 <script>
 import Breadcrumbs from "~/components/Breadcrumbs.vue";
-// import contentful from "contentful-management"
 
-const contentful = require('contentful-management')
 export default {
   components: {
     Breadcrumbs
@@ -52,10 +50,8 @@ export default {
   computed: {
     breadcrumbs() {
       return [
-        { text: 'Home', path: '/'},
-        { text: 'users', path: '/users'},
+        { text: 'ユーザー一覧', path: '/users'},
         { text: this.user.id, path: `/users/${this.user.id}`},
-        { text: 'edit', path: '/users/:id/edit'},
       ]
     }
   },

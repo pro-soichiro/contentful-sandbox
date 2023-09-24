@@ -1,12 +1,10 @@
 <template>
   <div>
-    <Breadcrumbs :breadcrumbs="breadcrumbs" />
+    <Breadcrumbs :breadcrumbs="breadcrumbs" :title="user.name" />
     <div>{{ user.id }}</div>
     <div>{{ user.name }}</div>
     <div>{{ user.age }}</div>
-    <nuxt-link :to="`/users/${user.id}/edit`">
-      Edit
-    </nuxt-link>
+    <nuxt-link :to="`/users/${user.id}/edit`"> Edit </nuxt-link>
   </div>
 </template>
 <script>
@@ -21,19 +19,11 @@ export default {
     return { user: store.state.contentful.user };
   },
   computed: {
-    routeDetail() {
-      return this.$route.params;
-    },
     breadcrumbs() {
       return [
-        { text: "Home", path: "/" },
         {
-          text: "users",
+          text: "ユーザー一覧",
           path: "/users",
-        },
-        {
-          text: this.user.name,
-          path: `/users/${this.user.id}`,
         },
       ];
     },

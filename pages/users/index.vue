@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Breadcrumbs :breadcrumbs="breadcrumbs" />
-    <h1>Users</h1>
+    <Breadcrumbs title="ユーザー一覧" />
+    <h1>ユーザー一覧</h1>
     <ul>
       <li v-for="user in users">
         <nuxt-link :to="'/users/' + user.fields.id">
@@ -18,17 +18,6 @@ import Breadcrumbs from "~/components/Breadcrumbs.vue";
 export default {
   components: {
     Breadcrumbs,
-  },
-  computed: {
-    breadcrumbs() {
-      return [
-        { text: "Home", path: "/" },
-        {
-          text: "users",
-          path: "/users",
-        },
-      ];
-    },
   },
   async asyncData({ store }) {
     await store.dispatch("contentful/fetchEntries", "users");

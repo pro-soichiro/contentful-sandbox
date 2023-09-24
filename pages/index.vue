@@ -14,6 +14,12 @@
         <nuxt-link to="/posts/categories">カテゴリー一覧</nuxt-link>
       </li>
     </ul>
+    <h2>ユーザー</h2>
+    <ul>
+      <li>
+        <nuxt-link to="/users">ユーザー一覧</nuxt-link>
+      </li>
+    </ul>
   </div>
 </template>
 
