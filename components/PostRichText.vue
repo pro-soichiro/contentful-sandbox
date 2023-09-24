@@ -16,7 +16,7 @@ export default {
     },
   },
   methods: {
-    renderEmbeddedAsset({
+    renderBlockEmbeddedAsset({
       data: {
         target: { fields },
       },
@@ -26,8 +26,30 @@ export default {
     renderHyperlink({ data, content }, next) {
       return `<a href="${data.uri}" target="_blank">${next(content)}</a>`;
     },
-    renderEmbeddedEntry({data: {target: {fields, sys}}}){
-      if (sys.contentType.sys.id === 'posts') {
+    renderEntryHyperlink({
+      data: {
+        target: { fields, sys },
+      }, content
+    }, next) {
+      if (sys.contentType.sys.id !== "posts") return;
+
+      return `<a href="${fields.slug}" target="_blank">${next(content)}</a>`;
+    },
+    renderInlineEmbeddedEntry({
+      data: {
+        target: { fields, sys },
+      },
+    }) {
+      if (sys.contentType.sys.id !== "posts") return;
+
+      return `<a href="${fields.slug}" target="_blank">${fields.title}</a>`;
+    },
+    renderBlockEmbeddedEntry({
+      data: {
+        target: { fields, sys },
+      },
+    }) {
+      if (sys.contentType.sys.id === "posts") {
         return `<div class="external-article-widget">
                   <a href="${fields.slug}" target="_blank">
                     <strong class="external-article-widget-title">
@@ -53,9 +75,11 @@ export default {
     richTextResponse(richtextObject) {
       const renderOptions = {
         renderNode: {
-          [BLOCKS.EMBEDDED_ENTRY]: this.renderEmbeddedEntry,
-          [BLOCKS.EMBEDDED_ASSET]: this.renderEmbeddedAsset,
+          [BLOCKS.EMBEDDED_ENTRY]: this.renderBlockEmbeddedEntry,
+          [BLOCKS.EMBEDDED_ASSET]: this.renderBlockEmbeddedAsset,
+          [INLINES.EMBEDDED_ENTRY]: this.renderInlineEmbeddedEntry,
           [INLINES.HYPERLINK]: this.renderHyperlink,
+          [INLINES.ENTRY_HYPERLINK]: this.renderEntryHyperlink,
         },
       };
       return documentToHtmlString(richtextObject, renderOptions);
@@ -75,32 +99,32 @@ export default {
   border-radius: 4px;
 }
 .external-article-widget-title {
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 .external-article-widget-description {
-    display: -webkit-box;
-    max-height: 3em;
-    overflow: hidden;
-    word-break: break-all;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+  display: -webkit-box;
+  max-height: 3em;
+  overflow: hidden;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
-.external-article-widget>a {
-    display: table-cell;
-    padding: 16px;
-    vertical-align: middle;
+.external-article-widget > a {
+  display: table-cell;
+  padding: 16px;
+  vertical-align: middle;
 }
 .external-article-widget-image {
-    width: 225px;
-    height: 150px;
-    vertical-align: middle;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    background-size: cover;
-    border-left: 1px solid grey;
-    border-radius: 0 3px 3px 0;
+  width: 225px;
+  height: 150px;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+  border-left: 1px solid grey;
+  border-radius: 0 3px 3px 0;
 }
 </style>

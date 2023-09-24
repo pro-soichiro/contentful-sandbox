@@ -4,7 +4,6 @@ const client = createClient();
 // import { createManagementClient } from "~/plugins/contentful-management.js";
 // const managementClient = createManagementClient();
 
-
 export const state = () => ({
   entries: [],
   entry: null,
@@ -62,6 +61,7 @@ export const actions = {
       const response = await client.getEntries({
         content_type: "posts",
         "fields.slug": slug,
+        include: 2
       });
       if (response.items.length > 0) {
         commit("SET_POST", response.items[0].fields);
