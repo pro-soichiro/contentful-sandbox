@@ -22,6 +22,13 @@
           </nuxt-link>
         </li>
       </ul>
+      <dt>thumbnail</dt>
+      <dd>
+        <img
+          :src="post.thumbnail.fields.file.url"
+          :alt="post.thumbnail.fields.description"
+          width="200px">
+      </dd>
       <dt>content</dt>
       <PostRichText :richtext="post.content" />
       <dt>contentBlocks</dt>
