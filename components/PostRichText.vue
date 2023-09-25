@@ -50,26 +50,17 @@ export default {
       },
     }) {
       if (sys.contentType.sys.id === "posts") {
-        return `<div class="external-article-widget">
-                  <a href="${fields.slug}" target="_blank">
-                    <strong class="external-article-widget-title">
-                      ${fields.title}
-                    </strong>
-                    <em class="external-article-widget-description">
-                      ${fields.description}
-                    </em>
-                    <em class="external-article-widget-url">
-                      http://localhost:3000/${fields.slug}
-                    </em>
-                  </a>
-                  <a
-                    class="external-article-widget-image"
-                    href="${fields.slug}"
-                    style="background-image: url('${fields.thumbnail.fields.file.url}');"
-                    target="_blank">
-                  </a>
-                </div>
-                `;
+        return `<a href="${
+        fields.slug
+      }" target="_blank" class="embedded-post-card"><div class="embedded-post-card__caption"><strong class="embedded-post-card__caption-title">${
+        fields.title
+      }</strong><em class="embedded-post-card__caption-description">${
+        fields.description
+      }</em><em class="embedded-post-card__caption-url">http://localhost:3000/posts/${
+        fields.slug
+      }</em></div><div class="embedded-post-card__image"><div><div><img src="${
+        fields.thumbnail.fields.file.url
+      }" alt="${fields.thumbnail.fields.description}"/></div></div></div></a>`;
       }
     },
     richTextResponse(richtextObject) {
@@ -92,39 +83,64 @@ export default {
 .post-rich-text img {
   width: 100%;
 }
-.external-article-widget {
-  display: table;
-  width: 100%;
-  border: 1px solid grey;
-  border-radius: 4px;
+.embedded-post-card {
+    max-width: 700px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    display: flex;
 }
-.external-article-widget-title {
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+.embedded-post-card__caption {
+  padding: 1.4rem;
+  flex: 4 1 180px;
 }
-.external-article-widget-description {
+.embedded-post-card__caption-title,
+.embedded-post-card__caption-description,
+.embedded-post-card__caption-url {
   display: -webkit-box;
-  max-height: 3em;
   overflow: hidden;
   word-break: break-all;
   -webkit-box-orient: vertical;
+}
+.embedded-post-card__caption-title {
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+
   -webkit-line-clamp: 2;
 }
-.external-article-widget > a {
-  display: table-cell;
-  padding: 16px;
-  vertical-align: middle;
+.embedded-post-card__caption-description,
+.embedded-post-card__caption-url {
+  font-size: 1.2rem;
+  line-height: 1.6rem;
 }
-.external-article-widget-image {
-  width: 225px;
-  height: 150px;
-  vertical-align: middle;
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-size: cover;
-  border-left: 1px solid grey;
+.embedded-post-card__caption-description {
+  color: grey;
+  -webkit-line-clamp: 2;
+}
+.embedded-post-card__caption-url {
+  margin-top: 0.6rem;
+  -webkit-line-clamp: 1;
+}
+.embedded-post-card__image {
+  flex: 1 1 180px;
+  position: relative;
+}
+.embedded-post-card__image > div {
+    position: absolute;
+    inset: 0px;
+}
+.embedded-post-card__image > div > div {
+      width: 100%;
+      height: 100%;
+}
+.embedded-post-card__image > div > div > img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
   border-radius: 0 3px 3px 0;
 }
 </style>
