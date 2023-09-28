@@ -2,6 +2,7 @@ const contentful = require('contentful-management')
 require('dotenv').config();
 
 const CTF_ENVIRONMENT = 'dev'
+// const CTF_ENVIRONMENT = 'master'
 
 async function unpublishEntriesInBatch(environment, entriesIds) {
   const promises = entriesIds.map(entryId => {

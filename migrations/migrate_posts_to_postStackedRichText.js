@@ -23,6 +23,8 @@ module.exports = function (migration) {
       }
     }
   })
-  const posts = migration.editContentType('posts')
-  posts.deleteField('content')
+  // 適用後に実行する必要がある
+  // const posts = migration.editContentType('posts')
+  // posts.deleteField('content')
 }
+
