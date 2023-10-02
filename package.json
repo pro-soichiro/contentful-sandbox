@@ -11,7 +11,7 @@
   "dependencies": {
     "@contentful/rich-text-html-renderer": "^16.1.2",
     "@contentful/rich-text-types": "^16.3.0",
-    "contentful": "8.1",
+    "contentful": "^10.6.1",
     "contentful-management": "^10.45.1",
     "core-js": "^3.25.3",
     "nuxt": "^2.15.8",
